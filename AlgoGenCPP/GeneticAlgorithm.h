@@ -15,7 +15,7 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
 	std::vector<float> notes;
 	while (true) {
 		for (unsigned int i = 0; i < populations.size(); ++i)
-			notes.push_back(populations[i]);
+			notes.push_back(evaluator<T>(populations[i]));
 		if (endCriteria(notes)) {
 			int index = std::distance(notes.begin(), std::max_element<T>(notes::begin(), notes::end()));
 			return populations[index];

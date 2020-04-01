@@ -156,6 +156,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneticAlgorithm.h" />
+    <ClInclude Include="IterativeThreshold.h" />
+    <ClInclude Include="QualityThreshold.h" />
+    <ClInclude Include="StabilityThreshold.h" />
+    <ClInclude Include="SumsThreshold.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
