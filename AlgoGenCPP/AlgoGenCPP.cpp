@@ -2,19 +2,35 @@
 //
 
 #include <iostream>
+#include <string>;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Welcome to PlanetSim, the life simulator of entities (ALPHA)\n";
+	bool toExit = false;
+
+	//TODO DECLARE EVOLVING VARS
+	int gen = 0;
+	int maxgen = 0;
+	std::cout << "Please enter how many generation you want : ";
+	std::cin >> maxgen;
+
+	while (!toExit) {
+		//TODO EVOLVING
+		gen++;
+
+
+		//Checkers
+		if (gen >= maxgen) {
+			toExit = true;
+		}
+	}
+	
+	//Clear CIN
+	std::string dummy;
+	std::getline(std::cin, dummy);
+
+	std::cout << "We made " << gen << " generations";
+	std::cin.get();
+	return 0;
 }
-
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
