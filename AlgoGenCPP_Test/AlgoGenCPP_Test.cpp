@@ -31,7 +31,7 @@ int main()
     const ElitismSelector<std::vector<unsigned int>> selector(populationKept);
     const VoyagerCrossOperator crossOperator;
     const TravelerMutator mutationOperator(citiesToGenerate, 0.15f);
-    const QualityThreshold qualityThreshold(1);
+    const QualityThreshold qualityThreshold(1300);
 
     evaluator.init();
 
@@ -51,4 +51,11 @@ int main()
         std::cout << v << ' ';
     }
     std::cout << "}" << std::endl;
+
+    std::vector<std::array<int, 2>> cities = evaluator.getCities();
+
+    std::cout << "Cities traveled:" << std::endl;
+    for (unsigned int v: result) {
+        std::cout << cities[v][0] << ' ' << cities[v][1] << std::endl;
+    }
 }
