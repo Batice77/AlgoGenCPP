@@ -14,17 +14,16 @@ public:
 	{
 		std::vector<T> final_population;
 		int count = 0;
-		for (std::vector<T>::iterator it = population.begin(); it != population.end(); ++it)
+
+		if (count <= m_number_selection)
 		{
-			if (count <= m_number_selection)
-			{
-				int index_max = std::max_element(notes.begin(), notes.end());
-				final_population.push_back(population.at(index_max));
-				notes.erase(notes.at(index_max));
-				population.erase(population.at(random_element));
-				++count;
-			}
+			int index_max = std::max_element(notes.begin(), notes.end());
+			final_population.push_back(population.at(index_max));
+			notes.erase(notes.at(index_max));
+			population.erase(population.at(random_element));
+			++count;
 		}
+
 		return final_population;
 	}
 
