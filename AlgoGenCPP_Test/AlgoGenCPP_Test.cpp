@@ -25,12 +25,14 @@ int main()
     unsigned int populationSize = 100;
     unsigned int populationKept = 60;
 
-    const TravelingSalesmanProblemEvaluator evaluator(citiesToGenerate);
+    TravelingSalesmanProblemEvaluator evaluator(citiesToGenerate);
     const TravelingSalesmanProblemGenerator generator(citiesToGenerate);
     const ElitismSelector<std::vector<unsigned int>> selector(populationKept);
     const VoyagerCrossOperator crossOperator;
     const TravelingSalesmanProblemMutator mutationOperator;
     const QualityThreshold qualityThreshold(1);
+
+    evaluator.init();
 
     std::cout << "Instanciate GeneticAlgorithm" << std::endl;
 
