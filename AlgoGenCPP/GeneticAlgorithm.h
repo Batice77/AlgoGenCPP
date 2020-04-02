@@ -1,12 +1,13 @@
 #pragma once
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 template <typename T, typename G, typename E, typename S, typename C, typename M, typename A>
 T Generate(const G& generator, const E& evaluator, const S& selector, const C& crossOperator, const M& mutationOperator, const A& endCriteria, unsigned int populationSize);
 
 template<typename T, typename G, typename E, typename S, typename C, typename M, typename A>
-inline T Generate(const G & generator, const E & evaluator, const S & selector, const C & crossOperator, const M & mutationOperator, const A & endCriteria, unsigned int populationSize)
+inline T Generate(const G & generator, const E & evaluator, const S & selector, const C & crossOperator, M & mutationOperator, const A & endCriteria, unsigned int populationSize)
 {
 	std::vector<T> populations;
 	for(unsigned int i=0; i<populationSize; ++i)
@@ -33,6 +34,16 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
             populations.insert(populations.end(),
                     std::make_move_iterator(selections.begin()),
                     std::make_move_iterator(selections.end()));
+
+            std::cout << "Next gen population:" << std::endl;
+            for (T s: populations) {
+                std::cout << '{';
+                for (unsigned int v: s) {
+                    std::cout << v << ' ';
+                }
+                std::cout << '}' << std::endl;
+            }
+            std::cout << std::endl;
 		}
 	}
 }
@@ -45,16 +56,16 @@ protected:
 	const E& evaluator;
 	const S& selector;
 	const C& crossOperator;
-	const M& mutationOperator;
+	M& mutationOperator;
 	const A& endCriteria;
 
 public:
-	GeneticAlgorithm(const G& generator, const E& evaluator, const S& selector, const C& crossOperator, const M& mutationOperator, const A& endCriteria);
+	GeneticAlgorithm(const G& generator, const E& evaluator, const S& selector, const C& crossOperator, M& mutationOperator, const A& endCriteria);
 	T Run(unsigned int populationSize);
 };
 
 template<typename T, typename G, typename E, typename S, typename C, typename M, typename A>
-inline GeneticAlgorithm<T, G, E, S, C, M, A>::GeneticAlgorithm(const G& generator, const E& evaluator, const S& selector, const C& crossOperator, const M& mutationOperator, const A& endCriteria) : generator(generator), evaluator(evaluator), selector(selector), crossOperator(crossOperator), mutationOperator(mutationOperator), endCriteria(endCriteria)
+inline GeneticAlgorithm<T, G, E, S, C, M, A>::GeneticAlgorithm(const G& generator, const E& evaluator, const S& selector, const C& crossOperator, M& mutationOperator, const A& endCriteria) : generator(generator), evaluator(evaluator), selector(selector), crossOperator(crossOperator), mutationOperator(mutationOperator), endCriteria(endCriteria)
 {}
 
 template <typename T, typename G, typename E, typename S, typename C, typename M, typename A>

@@ -14,7 +14,7 @@ public:
 		distributionVille = std::uniform_int_distribution<>(0, nbVille-1);
 	}
 
-	std::vector<unsigned int> operator()(std::vector<unsigned int> solution) const
+	std::vector<unsigned int> operator()(std::vector<unsigned int> solution)
 	{
 		std::random_device random_device;
 		std::mt19937 engine{ random_device() };

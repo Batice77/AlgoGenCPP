@@ -30,7 +30,7 @@ int main()
     const TravelingSalesmanProblemGenerator generator(citiesToGenerate);
     const ElitismSelector<std::vector<unsigned int>> selector(populationKept);
     const VoyagerCrossOperator crossOperator;
-    const TravelerMutator mutationOperator(citiesToGenerate, 0.15f);
+    TravelerMutator mutationOperator(citiesToGenerate, 0.15f);
     const QualityThreshold qualityThreshold(1300);
 
     evaluator.init();
