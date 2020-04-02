@@ -5,7 +5,6 @@
 class TravelerMutator {
 	int nbVille;
 	float probability;
-	std::default_random_engine generator;
 	std::uniform_real_distribution<> distributionProba;
 	std::uniform_int_distribution<> distributionVille;
 
@@ -15,11 +14,13 @@ public:
 		distributionVille = std::uniform_int_distribution<>(0, nbVille-1);
 	}
 
-	std::vector<unsigned int> operator()(std::vector<unsigned int> solution)
+	std::vector<unsigned int> operator()(std::vector<unsigned int> solution) const
 	{
-		if (distributionProba(generator) <= probability) {
-			int indexVille = distributionVille(generator);
-			int indexSequence = std::uniform_int_distribution<>(0, solution.size()-1)(generator);
+		std::random_device random_device;
+		std::mt19937 engine{ random_device() };
+		if (distributionProba(engine) <= probability) {
+			int indexVille = distributionVille(engine);
+			int indexSequence = std::uniform_int_distribution<>(0, solution.size()-1)(engine);
 			solution[indexSequence] = indexVille;
 		}
 
