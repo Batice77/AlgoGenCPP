@@ -6,6 +6,7 @@
 #include "../AlgoGenCPP/QualityThreshold.h"
 #include "../AlgoGenCPP/ElitismSelector.h"
 #include "../AlgoGenCPP/VoyagerCrossOperator.h"
+#include "../AlgoGenCPP/TravelerMutator.h"
 #include "TravelingSalesmanProblemEvaluator.h"
 #include "TravelingSalesmanProblemGenerator.h"
 #include "TravelingSalesmanProblemMutator.h"
@@ -29,7 +30,7 @@ int main()
     const TravelingSalesmanProblemGenerator generator(citiesToGenerate);
     const ElitismSelector<std::vector<unsigned int>> selector(populationKept);
     const VoyagerCrossOperator crossOperator;
-    const TravelingSalesmanProblemMutator mutationOperator;
+    const TravelerMutator mutationOperator(citiesToGenerate, 0.15f);
     const QualityThreshold qualityThreshold(1);
 
     evaluator.init();
@@ -39,7 +40,7 @@ int main()
     GeneticAlgorithm<std::vector<unsigned int>,
         TravelingSalesmanProblemGenerator, TravelingSalesmanProblemEvaluator,
         ElitismSelector<std::vector<unsigned int>>, VoyagerCrossOperator,
-        TravelingSalesmanProblemMutator, QualityThreshold>
+        TravelerMutator, QualityThreshold>
             geneticAlgorithm (generator, evaluator,
                 selector, crossOperator, mutationOperator, qualityThreshold);
 

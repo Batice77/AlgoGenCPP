@@ -154,12 +154,15 @@
     <ClCompile Include="AlgoGenCPP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ElitismSelector.h" />
     <ClInclude Include="GeneticAlgorithm.h" />
     <ClInclude Include="IterativeThreshold.h" />
     <ClInclude Include="QualityThreshold.h" />
     <ClInclude Include="StabilityThreshold.h" />
     <ClInclude Include="SumsThreshold.h" />
-    <ClInclude Include="TraverlerMutator.h" />
+    <ClInclude Include="TournamentSelector.h" />
+    <ClInclude Include="TravelerMutator.h" />
+    <ClInclude Include="VoyagerCrossOperator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

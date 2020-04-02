@@ -152,6 +152,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AlgoGenCPP_Test.cpp" />
+    <ClCompile Include="TravelingSalesmanProblemEvaluator.cpp" />
+    <ClCompile Include="TravelingSalesmanProblemGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TravelingSalesmanProblemEvaluator.h" />
+    <ClInclude Include="TravelingSalesmanProblemGenerator.h" />
+    <ClInclude Include="TravelingSalesmanProblemMutator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
