@@ -152,7 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AlgoGenCPP.cpp" />
-    <ClCompile Include="GeneticAlgorithm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneticAlgorithm.h" />
@@ -160,6 +159,7 @@
     <ClInclude Include="QualityThreshold.h" />
     <ClInclude Include="StabilityThreshold.h" />
     <ClInclude Include="SumsThreshold.h" />
+    <ClInclude Include="TraverlerMutator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
