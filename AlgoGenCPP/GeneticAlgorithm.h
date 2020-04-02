@@ -10,14 +10,14 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
 {
 	std::vector<T> populations;
 	for(unsigned int i=0; i<populationSize; ++i)
-		populations.push_back(generator<T>());
+		populations.push_back(generator());
 
 	std::vector<float> notes;
 	while (true) {
 		for (unsigned int i = 0; i < populations.size(); ++i)
-			notes.push_back(evaluator<T>(populations[i]));
+			notes.push_back(evaluator(populations[i]));
 		if (endCriteria(notes)) {
-			int index = std::distance(notes.begin(), std::max_element<T>(notes::begin(), notes::end()));
+			int index = std::distance(notes.begin(), std::max_element(notes::begin(), notes::end()));
 			return populations[index];
 		}
 		else {
@@ -27,7 +27,7 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
 			for (T solution1 : selections) {
 				for (T solution2 : selections) {
 					if (solution1 == solution2) continue;
-					populations.push_back(mutationOperator(crossOperator<T>(solution1, solution2)));
+					populations.push_back(mutationOperator(crossOperator(solution1, solution2)));
 				}
 			}
 		}
@@ -52,8 +52,7 @@ public:
 
 template<typename T, typename G, typename E, typename S, typename C, typename M, typename A>
 inline GeneticAlgorithm<T, G, E, S, C, M, A>::GeneticAlgorithm(const G& generator, const E& evaluator, const S& selector, const C& crossOperator, const M& mutationOperator, const A& endCriteria) : generator(generator), evaluator(evaluator), selector(selector), crossOperator(crossOperator), mutationOperator(mutationOperator), endCriteria(endCriteria)
-{
-}
+{}
 
 template <typename T, typename G, typename E, typename S, typename C, typename M, typename A>
 T GeneticAlgorithm<T, G, E, S, C, M, A>::Run(unsigned int populationSize)
