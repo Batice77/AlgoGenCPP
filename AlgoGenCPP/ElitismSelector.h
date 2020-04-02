@@ -15,7 +15,7 @@ public:
 		std::vector<T> final_population;
 		int count = 0;
 
-		if (count <= m_number_selection)
+		while (count < m_number_selection)
 		{
 			int index_max = std::distance(notes.begin(), std::max_element(notes.begin(), notes.end()));
 			final_population.push_back(population.at(index_max));
