@@ -30,6 +30,9 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
 					populations.push_back(mutationOperator(crossOperator(solution1, solution2)));
 				}
 			}
+            populations.insert(populations.end(),
+                    std::make_move_iterator(selections.begin()),
+                    std::make_move_iterator(selections.end()));
 		}
 	}
 }
