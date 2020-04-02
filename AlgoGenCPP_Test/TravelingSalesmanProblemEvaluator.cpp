@@ -48,12 +48,16 @@ float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int
         currentPosition = nextPosition;
     }
 
-    std::cout << "value: " << value << std::endl;
-
     return value;
 }
 
 float TravelingSalesmanProblemEvaluator::operator()(const std::vector<unsigned int>& solution) const
 {
     return evaluate(solution);
+}
+
+std::vector<std::array<int, 2>> TravelingSalesmanProblemEvaluator::getCities()
+    const
+{
+    return m_cities;
 }

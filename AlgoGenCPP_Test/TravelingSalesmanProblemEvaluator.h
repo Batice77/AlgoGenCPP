@@ -12,6 +12,7 @@ class TravelingSalesmanProblemEvaluator
         void init();
         float evaluate(const std::vector<unsigned int>& solution) const;
         float operator()(const std::vector<unsigned int>& solution) const;
+        std::vector<std::array<int, 2>> getCities() const;
 
     private:
         unsigned int m_citiesToGenerate;
