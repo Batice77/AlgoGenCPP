@@ -1,7 +1,7 @@
 #include <set>
 #include <random>
 
-#include "TraverllingSalesmanProblemEvaluator.h"
+#include "TravelingSalesmanProblemEvaluator.h"
 
 TravelingSalesmanProblemEvaluator::TravelingSalesmanProblemEvaluator(unsigned int citiesToGenerate, float alreadyVisitedMalus = 141.421356237, unsigned int mapWidth = 100, unsigned int mapHeight = 100) :
     m_citiesToGenerate(citiesToGenerate),
