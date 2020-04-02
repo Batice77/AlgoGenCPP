@@ -1,5 +1,6 @@
 #include <set>
 #include <random>
+#include <iostream>
 
 #include "TravelingSalesmanProblemEvaluator.h"
 
@@ -29,10 +30,10 @@ float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int
 {
     float value = 0;
 
-    std::array<int, 2> currentPosition;
+    std::array<int, 2> currentPosition = m_cities[solution[0]];
     std::set<std::array<int, 2>> visitedCities;
 
-    for (unsigned int i = 0; i < solution.size(); ++i) {
+    for (unsigned int i = 1; i < solution.size(); ++i) {
         std::array<int, 2> nextPosition = m_cities[solution[i]];
         float distance =
             std::sqrt(std::pow(nextPosition[0] - currentPosition[0], 2)
@@ -46,6 +47,8 @@ float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int
 
         currentPosition = nextPosition;
     }
+
+    std::cout << "value: " << value << std::endl;
 
     return value;
 }
