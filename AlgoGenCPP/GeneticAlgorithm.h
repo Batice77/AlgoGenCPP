@@ -17,11 +17,11 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
 		for (unsigned int i = 0; i < populations.size(); ++i)
 			notes.push_back(evaluator(populations[i]));
 		if (endCriteria(notes)) {
-			int index = std::distance(notes.begin(), std::max_element(notes::begin(), notes::end()));
+			int index = std::distance(notes.begin(), std::max_element(notes.begin(), notes.end()));
 			return populations[index];
 		}
 		else {
-			std::vector<T> selections = selector<T>(populations, notes);
+			std::vector<T> selections = selector(populations, notes);
 			populations.clear();
 			notes.clear();
 			for (T solution1 : selections) {

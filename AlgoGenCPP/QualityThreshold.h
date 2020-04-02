@@ -7,8 +7,8 @@ public:
 	QualityThreshold(float qualityValue) : qualityThreshold(qualityValue) {}
 	~QualityThreshold(){};
 
-	bool operator()(const std::vector<float> qualityList) {
-		for (int i = 0; i < qualityList.size; i++) {
+	bool operator()(const std::vector<float> qualityList) const {
+		for (int i = 0; i < qualityList.size(); i++) {
 			if (qualityList[i] >= qualityThreshold) {
 				return true;
 			}

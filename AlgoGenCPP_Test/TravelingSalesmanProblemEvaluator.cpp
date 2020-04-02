@@ -3,7 +3,7 @@
 
 #include "TravelingSalesmanProblemEvaluator.h"
 
-TravelingSalesmanProblemEvaluator::TravelingSalesmanProblemEvaluator(unsigned int citiesToGenerate, float alreadyVisitedMalus = 141.421356237, unsigned int mapWidth = 100, unsigned int mapHeight = 100) :
+TravelingSalesmanProblemEvaluator::TravelingSalesmanProblemEvaluator(unsigned int citiesToGenerate, float alreadyVisitedMalus, unsigned int mapWidth, unsigned int mapHeight) :
     m_citiesToGenerate(citiesToGenerate),
     m_alreadyVisitedMalus(alreadyVisitedMalus),
     m_mapWidth(mapWidth),

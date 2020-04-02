@@ -1,20 +1,45 @@
-// AlgoGenCPP_Test.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
-
 #include <iostream>
+#include <string>
+#include <cstdlib>
+
+#include "../AlgoGenCPP/GeneticAlgorithm.h"
+#include "../AlgoGenCPP/QualityThreshold.h"
+#include "../AlgoGenCPP/ElitismSelector.h"
+#include "../AlgoGenCPP/VoyagerCrossOperator.h"
+#include "TravelingSalesmanProblemEvaluator.h"
+#include "TravelingSalesmanProblemGenerator.h"
+#include "TravelingSalesmanProblemMutator.h"
+
+class Selector;
+class CrossOperator;
+class MutationOperator;
+class EndCriteria;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Begin tests" << std::endl;
+
+    std::cout << "Instanciate all GeneticAlgorithm parameters" << std::endl;
+
+    unsigned int citiesToGenerate = 10;
+    unsigned int populationSize = 100;
+    unsigned int populationKept = 60;
+
+    const TravelingSalesmanProblemEvaluator evaluator(citiesToGenerate);
+    const TravelingSalesmanProblemGenerator generator(citiesToGenerate);
+    const ElitismSelector<std::vector<unsigned int>> selector(populationKept);
+    const VoyagerCrossOperator crossOperator;
+    const TravelingSalesmanProblemMutator mutationOperator;
+    const QualityThreshold qualityThreshold(1);
+
+    std::cout << "Instanciate GeneticAlgorithm" << std::endl;
+
+    GeneticAlgorithm<std::vector<unsigned int>,
+        TravelingSalesmanProblemGenerator, TravelingSalesmanProblemEvaluator,
+        ElitismSelector<std::vector<unsigned int>>, VoyagerCrossOperator,
+        TravelingSalesmanProblemMutator, QualityThreshold>
+            geneticAlgorithm (generator, evaluator,
+                selector, crossOperator, mutationOperator, qualityThreshold);
+
+    std::vector<unsigned int> result = geneticAlgorithm.Run(populationSize);
 }
-
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
-
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
