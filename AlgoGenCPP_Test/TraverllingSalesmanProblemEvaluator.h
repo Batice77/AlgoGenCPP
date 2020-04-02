@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <vector>
 #include <array>
 
 class TravelingSalesmanProblemEvaluator
@@ -10,8 +10,8 @@ class TravelingSalesmanProblemEvaluator
                 float alreadyVisitedMalus, unsigned int mapWidth,
                 unsigned int mapHeight);
         void init();
-        template<class T> float evaluate(const T& solution) const;
-        template<class T> float operator()(const T& solution) const;
+        float evaluate(const std::vector<unsigned int>& solution) const;
+        float operator()(const std::vector<unsigned int>& solution) const;
 
     private:
         unsigned int m_citiesToGenerate;
@@ -19,5 +19,5 @@ class TravelingSalesmanProblemEvaluator
         unsigned int m_mapWidth;
         unsigned int m_mapHeight;
         unsigned int m_mapDiagonal;
-        std::list<std::array<int, 2>> m_cities;
+        std::vector<std::array<int, 2>> m_cities;
 };

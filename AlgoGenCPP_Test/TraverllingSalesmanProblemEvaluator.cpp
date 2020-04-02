@@ -1,4 +1,3 @@
-#include <cmath>
 #include <set>
 #include <random>
 
@@ -26,15 +25,14 @@ void TravelingSalesmanProblemEvaluator::init()
     }
 }
 
-template<class T>
-float TravelingSalesmanProblemEvaluator::evaluate(const T& solution) const
+float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int>& solution) const
 {
     float value = 0;
 
     std::array<int, 2> currentPosition;
     std::set<std::array<int, 2>> visitedCities;
 
-    for (int i = 0; i < solution.size(); ++i) {
+    for (unsigned int i = 0; i < solution.size(); ++i) {
         std::array<int, 2> nextPosition = m_cities[solution[i]];
         float distance =
             std::sqrt(std::pow(nextPosition[0] - currentPosition[0], 2)
@@ -52,8 +50,7 @@ float TravelingSalesmanProblemEvaluator::evaluate(const T& solution) const
     return value;
 }
 
-template<class T>
-float TravelingSalesmanProblemEvaluator::operator()(const T& solution) const
+float TravelingSalesmanProblemEvaluator::operator()(const std::vector<unsigned int>& solution) const
 {
     return evaluate(solution);
 }
