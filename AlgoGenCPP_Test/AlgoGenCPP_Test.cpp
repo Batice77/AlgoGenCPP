@@ -45,4 +45,10 @@ int main()
                 selector, crossOperator, mutationOperator, qualityThreshold);
 
     std::vector<unsigned int> result = geneticAlgorithm.Run(populationSize);
+
+    std::cout << "The result is: {";
+    for (unsigned int v: result) {
+        std::cout << v << ' ';
+    }
+    std::cout << "}" << std::endl;
 }
