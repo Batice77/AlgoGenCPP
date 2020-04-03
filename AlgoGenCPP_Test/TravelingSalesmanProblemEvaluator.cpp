@@ -16,11 +16,13 @@ void TravelingSalesmanProblemEvaluator::init()
 {
     std::random_device rd;
     std::mt19937 g(rd());
+	std::uniform_int_distribution<> distributionWidth
+        = std::uniform_int_distribution<>(0, m_mapWidth);
+	std::uniform_int_distribution<> distributionHeight
+        = std::uniform_int_distribution<>(0, m_mapHeight);
 
     for (unsigned int i = 0; i < m_citiesToGenerate; ++i) {
-        std::array<int, 2> city =
-        {static_cast<int>(g()/((g.max() + 1u)/m_mapWidth)),
-            static_cast<int>(g()/((g.max() + 1u)/m_mapHeight))};
+        std::array<int, 2> city = {distributionWidth(g), distributionHeight(g)};
         m_cities.push_back(city);
     }
 }
