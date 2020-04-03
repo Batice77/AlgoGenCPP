@@ -15,8 +15,19 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
 
 	std::vector<float> notes;
 	while (true) {
-		for (unsigned int i = 0; i < populations.size(); ++i)
+		for (unsigned int i = 0; i < populations.size(); ++i) {
 			notes.push_back(evaluator(populations[i]));
+        }
+
+        std::cout << "Evaluated population:" << std::endl;
+        for (unsigned int i = 0; i < populations.size(); ++i) {
+            std::cout << '{';
+            for (unsigned int v: populations[i]) {
+                std::cout << v << ' ';
+            }
+            std::cout << "} value: " << notes[i] <<  std::endl;
+        }
+        std::cout << std::endl;
 		if (endCriteria(notes)) {
 			int index = std::distance(notes.begin(), std::max_element(notes.begin(), notes.end()));
 			return populations[index];
@@ -34,16 +45,6 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
             populations.insert(populations.end(),
                     std::make_move_iterator(selections.begin()),
                     std::make_move_iterator(selections.end()));
-
-            std::cout << "Next gen population:" << std::endl;
-            for (T s: populations) {
-                std::cout << '{';
-                for (unsigned int v: s) {
-                    std::cout << v << ' ';
-                }
-                std::cout << '}' << std::endl;
-            }
-            std::cout << std::endl;
 		}
 	}
 }
