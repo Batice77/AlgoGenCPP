@@ -25,13 +25,14 @@ int main()
     unsigned int citiesToGenerate = 10;
     unsigned int populationSize = 100;
     unsigned int populationKept = 60;
+    float valueThreshold = citiesToGenerate * citiesToGenerate * 10;
 
     TravelingSalesmanProblemEvaluator evaluator(citiesToGenerate);
     const TravelingSalesmanProblemGenerator generator(citiesToGenerate);
     const ElitismSelector<std::vector<unsigned int>> selector(populationKept);
     const VoyagerCrossOperator crossOperator;
     TravelerMutator mutationOperator(citiesToGenerate, 0.15f);
-    const QualityThreshold qualityThreshold(1300);
+    const QualityThreshold qualityThreshold(valueThreshold);
 
     evaluator.init();
 
