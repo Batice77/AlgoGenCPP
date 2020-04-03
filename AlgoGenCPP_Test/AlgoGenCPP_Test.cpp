@@ -25,11 +25,11 @@ int main()
 
     std::cout << "Instanciate all GeneticAlgorithm parameters" << std::endl;
 
-    unsigned int citiesToGenerate = 10;
+    unsigned int citiesToGenerate = 100;
     unsigned int populationSize = 100;
     unsigned int populationKept = 60;
     float valueThreshold = citiesToGenerate * citiesToGenerate * 13;
-    unsigned int maxIterations = 20;
+    unsigned int maxIterations = 2 * citiesToGenerate;
     unsigned int stableIterations = 5;
 
     TravelingSalesmanProblemEvaluator evaluator(citiesToGenerate);
