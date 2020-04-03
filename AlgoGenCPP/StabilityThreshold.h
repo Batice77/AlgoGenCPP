@@ -11,7 +11,7 @@ public:
 	~StabilityThreshold() {};
 
 	bool operator()(const std::vector<float> qualityList) {
-		if (last_val.size == 0) {
+		if (last_val.size() == 0) {
 			last_val = qualityList;
 			return false;
 		}
