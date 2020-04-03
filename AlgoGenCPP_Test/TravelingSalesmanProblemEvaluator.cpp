@@ -14,12 +14,13 @@ TravelingSalesmanProblemEvaluator::TravelingSalesmanProblemEvaluator(unsigned in
 
 void TravelingSalesmanProblemEvaluator::init()
 {
-    std::minstd_rand rand;
+    std::random_device rd;
+    std::mt19937 g(rd());
 
     for (unsigned int i = 0; i < m_citiesToGenerate; ++i) {
         std::array<int, 2> city =
-        {static_cast<int>(rand()/((rand.max() + 1u)/m_mapWidth)),
-            static_cast<int>(rand()/((rand.max() + 1u)/m_mapHeight))};
+        {static_cast<int>(g()/((g.max() + 1u)/m_mapWidth)),
+            static_cast<int>(g()/((g.max() + 1u)/m_mapHeight))};
         m_cities.push_back(city);
     }
 }
