@@ -37,8 +37,8 @@ float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int
         const std::array<int, 2> &nextPosition
             = m_cities[solution[(i+1)%solution.size()]];
         float distance =
-            std::sqrt(std::pow(nextPosition[0] - currentPosition[0], 2)
-                    + std::pow(nextPosition[1] - currentPosition[1], 2));
+            std::pow(nextPosition[0] - currentPosition[0], 2)
+            + std::pow(nextPosition[1] - currentPosition[1], 2);
 
         value += m_mapDiagonal - distance;
     }
