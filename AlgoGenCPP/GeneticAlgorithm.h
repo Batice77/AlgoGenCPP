@@ -28,21 +28,20 @@ bool Step(std::vector<T> & populations, std::vector<float> & notes, T & bestSolu
         notes.push_back(evaluator(populations[i]));
     }
 
-    std::cout << "Evaluated population:" << std::endl;
-    for (unsigned int i = 0; i < populations.size(); ++i) {
-        std::cout << '{';
-        for (unsigned int v: populations[i]) {
-            std::cout << v << ' ';
-        }
-        std::cout << "} value: " << notes[i] <<  std::endl;
-    }
-    std::cout << std::endl;
+    //std::cout << "Evaluated population:" << std::endl;
+    //for (unsigned int i = 0; i < populations.size(); ++i) {
+    //    std::cout << '{';
+    //    for (unsigned int v: populations[i]) {
+    //        std::cout << v << ' ';
+    //    }
+    //    std::cout << "} value: " << notes[i] <<  std::endl;
+    //}
+    //std::cout << std::endl;
 
     int index = std::distance(notes.begin(), std::max_element(notes.begin(), notes.end()));
     bestSolution = populations[index];
 
     if (endCriteria(notes)) {
-        std::cout << "The end !" <<  std::endl;
         return true;
     }
     else {
