@@ -57,18 +57,30 @@ int main()
             geneticAlgorithm (generator, evaluator,
                 selector, crossOperator, mutationOperator, sumsThreshold);
 
-    std::vector<unsigned int> result = geneticAlgorithm.Run(populationSize);
-
-    std::cout << "The result is: {";
-    for (unsigned int v: result) {
-        std::cout << v << ' ';
+    std::vector<std::vector<unsigned int>> populations
+        = geneticAlgorithm.Init(generator, populationSize);
+    std::vector<float> notes;
+    std::vector<unsigned int> bestSolution;
+    while (!geneticAlgorithm.Step(populations, notes, bestSolution, evaluator, selector, crossOperator, mutationOperator, sumsThreshold)) {
+        std::cout << "Best solution: {";
+        for (unsigned int v: bestSolution) {
+            std::cout << v << ' ';
+        }
+        std::cout << "}" << std::endl;
     }
-    std::cout << "}" << std::endl;
+
+    //std::vector<unsigned int> result = geneticAlgorithm.Run(populationSize);
+
+    //std::cout << "The result is: {";
+    //for (unsigned int v: result) {
+    //    std::cout << v << ' ';
+    //}
+    //std::cout << "}" << std::endl;
 
     std::vector<std::array<int, 2>> cities = evaluator.getCities();
 
     std::cout << "Cities traveled:" << std::endl;
-    for (unsigned int v: result) {
+    for (unsigned int v: bestSolution /*result*/) {
         std::cout << cities[v][0] << ' ' << cities[v][1] << std::endl;
     }
 }
