@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <algorithm>
+#include <random>
+#include <set>
 
 class VoyagerCrossOperator
 {
@@ -9,34 +11,38 @@ public :
 
 	std::vector<unsigned int> operator()(std::vector<unsigned int> list1, std::vector<unsigned int> list2) const {
 		std::vector<unsigned int> res;
-		int lim1 = list1.size() / 2;
+		unsigned int lim1 = list1.size() / 2;
 
-		for (int i = 0; i < lim1; i++) {
+		for (unsigned int i = 0; i < lim1; i++) {
 			res.push_back(list1[i]);
 		}
 		for (unsigned int i = lim1; i < list2.size(); i++) {
 			res.push_back(list2[i]);
 		}
 
-		std::vector<unsigned int> values = list2;
-		std::vector<unsigned int> verif;
-		for (int i = 0; i < res.size(); i++) {
-			while(std::find(verif.begin(),verif.end(),values[values.size()]) != verif.end())
-			{
-				//tant qu'on a une value deja presente
-				values.pop_back();
-			}
+        std::random_device rd;
+        std::mt19937 g(rd());
+        std::vector<unsigned int> values(list1.size());
+        std::iota (std::begin(values), std::end(values), 0);
+        std::set<unsigned int> possibleValues(values.begin(), values.end());
 
-			if (std::find(verif.begin(), verif.end(), res[i]) != verif.end())
-			{
-				//ELEMENT FOUND
-				res[i] = values[values.size()];
-			}
-			else
-			{
-				verif.push_back(res[i]);
-			}
+		std::set<unsigned int> containedInRes(res.begin(), res.end());
+		std::set<unsigned int> notInRes;
+        std::set_difference(possibleValues.begin(), possibleValues.end(),
+                containedInRes.begin(), containedInRes.end(),
+                std::inserter(notInRes, notInRes.begin()));
+
+		std::set<unsigned int> encountered;
+
+		for (unsigned int i = 0; i < res.size(); i++) {
+            if (std::count(encountered.begin(), encountered.end(),
+                        res[i]) != 0) {
+                res[i] = *(notInRes.begin());
+                notInRes.erase(notInRes.begin());
+            }
+            encountered.emplace(res[i]);
 		}
-		return res;
+
+        return res;
 	}
 };
