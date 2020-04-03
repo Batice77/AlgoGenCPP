@@ -25,10 +25,10 @@ inline T Generate(const G & generator, const E & evaluator, const S & selector, 
 			std::vector<T> selections = selector(populations, notes);
 			populations.clear();
 			notes.clear();
-			for (T solution1 : selections) {
-				for (T solution2 : selections) {
-					if (solution1 == solution2) continue;
-					populations.push_back(mutationOperator(crossOperator(solution1, solution2)));
+			for (unsigned int i = 0; i < selections.size(); ++i) {
+				for (unsigned int j = 0; j < selections.size(); ++j) {
+					if (i == j) continue;
+					populations.push_back(mutationOperator(crossOperator(selections[i], selections[j])));
 				}
 			}
             populations.insert(populations.end(),
