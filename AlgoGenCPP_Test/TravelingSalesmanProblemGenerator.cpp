@@ -18,11 +18,5 @@ std::vector<unsigned int> TravelingSalesmanProblemGenerator::operator()() const
     std::iota (std::begin(solution), std::end(solution), 0);
     std::shuffle (std::begin(solution), std::end(solution), g);
 
-    std::cout << "Generated solution: {";
-    for (unsigned int v: solution) {
-        std::cout << v << ' ';
-    }
-    std::cout << "}" << std::endl;
-
     return solution;
 }
