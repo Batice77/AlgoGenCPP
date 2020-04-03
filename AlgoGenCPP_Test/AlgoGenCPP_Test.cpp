@@ -4,6 +4,9 @@
 
 #include "../AlgoGenCPP/GeneticAlgorithm.h"
 #include "../AlgoGenCPP/QualityThreshold.h"
+#include "../AlgoGenCPP/IterativeThreshold.h"
+#include "../AlgoGenCPP/StabilityThreshold.h"
+#include "../AlgoGenCPP/SumsThreshold.h"
 #include "../AlgoGenCPP/ElitismSelector.h"
 #include "../AlgoGenCPP/VoyagerCrossOperator.h"
 #include "../AlgoGenCPP/TravelerMutator.h"
@@ -25,7 +28,9 @@ int main()
     unsigned int citiesToGenerate = 10;
     unsigned int populationSize = 100;
     unsigned int populationKept = 60;
-    float valueThreshold = citiesToGenerate * citiesToGenerate * 10;
+    float valueThreshold = citiesToGenerate * citiesToGenerate * 13;
+    unsigned int maxIterations = 20;
+    unsigned int stableIterations = 5;
 
     TravelingSalesmanProblemEvaluator evaluator(citiesToGenerate);
     const TravelingSalesmanProblemGenerator generator(citiesToGenerate);
@@ -33,6 +38,12 @@ int main()
     const VoyagerCrossOperator crossOperator;
     TravelerMutator mutationOperator(citiesToGenerate, 0.15f);
     const QualityThreshold qualityThreshold(valueThreshold);
+    IterativeThreshold iterativeThreshold(maxIterations);
+    StabilityThreshold stabilityThreshold(stableIterations);
+    const SumsThreshold<std::vector<unsigned int>, IterativeThreshold,
+          QualityThreshold, StabilityThreshold>
+              sumsThreshold(iterativeThreshold, qualityThreshold,
+                      stabilityThreshold);
 
     evaluator.init();
 
@@ -41,9 +52,10 @@ int main()
     GeneticAlgorithm<std::vector<unsigned int>,
         TravelingSalesmanProblemGenerator, TravelingSalesmanProblemEvaluator,
         ElitismSelector<std::vector<unsigned int>>, VoyagerCrossOperator,
-        TravelerMutator, QualityThreshold>
+        TravelerMutator, SumsThreshold<std::vector<unsigned int>,
+        IterativeThreshold, QualityThreshold, StabilityThreshold>>
             geneticAlgorithm (generator, evaluator,
-                selector, crossOperator, mutationOperator, qualityThreshold);
+                selector, crossOperator, mutationOperator, sumsThreshold);
 
     std::vector<unsigned int> result = geneticAlgorithm.Run(populationSize);
 
