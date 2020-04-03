@@ -10,45 +10,32 @@
 #include "TravelingSalesmanProblemEvaluator.h"
 #include "TravelingSalesmanProblemGenerator.h"
 #include "TravelingSalesmanProblemMutator.h"
+#include "Scene.h"
 
 class Selector;
 class CrossOperator;
 class MutationOperator;
 class EndCriteria;
 
-int main()
+// Main code
+int main(int, char**)
 {
-    std::cout << "Begin tests" << std::endl;
+	//Creation de la scene
+	Scene scene("Chapitre 3", 1280, 720);
+	//Initialisation de la scene
+	if (scene.initialiserFenetre() == false)
+		return -1;
 
-    std::cout << "Instanciate all GeneticAlgorithm parameters" << std::endl;
+	if (scene.initGL() == false)
+		return -1;
+	
+	if (scene.initImGui() == false)
+		return -1;
 
-    unsigned int citiesToGenerate = 10;
-    unsigned int populationSize = 100;
-    unsigned int populationKept = 60;
+	//Boucle Principale
+	scene.bouclePrincipale();
 
-    TravelingSalesmanProblemEvaluator evaluator(citiesToGenerate);
-    const TravelingSalesmanProblemGenerator generator(citiesToGenerate);
-    const ElitismSelector<std::vector<unsigned int>> selector(populationKept);
-    const VoyagerCrossOperator crossOperator;
-    const TravelerMutator mutationOperator(citiesToGenerate, 0.15f);
-    const QualityThreshold qualityThreshold(1);
+	std::cout << "test" << std::endl;
 
-    evaluator.init();
-
-    std::cout << "Instanciate GeneticAlgorithm" << std::endl;
-
-    GeneticAlgorithm<std::vector<unsigned int>,
-        TravelingSalesmanProblemGenerator, TravelingSalesmanProblemEvaluator,
-        ElitismSelector<std::vector<unsigned int>>, VoyagerCrossOperator,
-        TravelerMutator, QualityThreshold>
-            geneticAlgorithm (generator, evaluator,
-                selector, crossOperator, mutationOperator, qualityThreshold);
-
-    std::vector<unsigned int> result = geneticAlgorithm.Run(populationSize);
-
-    std::cout << "The result is: {";
-    for (unsigned int v: result) {
-        std::cout << v << ' ';
-    }
-    std::cout << "}" << std::endl;
+	return 0;
 }
