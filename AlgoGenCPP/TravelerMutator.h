@@ -19,9 +19,9 @@ public:
 		std::random_device random_device;
 		std::mt19937 engine{ random_device() };
 		if (distributionProba(engine) <= probability) {
-			int indexVille = distributionVille(engine);
-			int indexSequence = std::uniform_int_distribution<>(0, solution.size()-1)(engine);
-			solution[indexSequence] = indexVille;
+			int indexSequence1 = distributionVille(engine);
+			int indexSequence2 = distributionVille(engine);
+			std::swap(solution[indexSequence1], solution[indexSequence2]);
 		}
 
 		return solution;
