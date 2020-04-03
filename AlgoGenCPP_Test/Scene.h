@@ -5,6 +5,7 @@
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl3.h"
+#include "imgui_plot.h"
 #include <stdio.h>
 
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)

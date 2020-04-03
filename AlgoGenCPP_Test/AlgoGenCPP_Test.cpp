@@ -21,7 +21,7 @@ class EndCriteria;
 int main(int, char**)
 {
 	//Creation de la scene
-	Scene scene("Chapitre 3", 1280, 720);
+	Scene scene("Chapitre 3", 800, 600);
 	//Initialisation de la scene
 	if (scene.initialiserFenetre() == false)
 		return -1;
