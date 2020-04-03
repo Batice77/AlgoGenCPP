@@ -1,4 +1,3 @@
-#include <set>
 #include <random>
 #include <iostream>
 
@@ -30,8 +29,6 @@ float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int
 {
     float value = 0;
 
-    std::set<std::array<int, 2>> visitedCities;
-
     for (unsigned int i = 0; i <= solution.size(); ++i) {
         const std::array<int, 2> &currentPosition
             = m_cities[solution[i%solution.size()]];
@@ -41,13 +38,7 @@ float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int
             std::sqrt(std::pow(nextPosition[0] - currentPosition[0], 2)
                     + std::pow(nextPosition[1] - currentPosition[1], 2));
 
-        if (visitedCities.count(nextPosition) != 0) {
-            value -= m_alreadyVisitedMalus;
-        } else {
-            value += m_mapDiagonal - distance;
-        }
-
-        visitedCities.emplace(currentPosition);
+        value += m_mapDiagonal - distance;
     }
 
     return value;
