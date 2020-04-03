@@ -23,7 +23,7 @@
     <ProjectGuid>{8E3A7258-DFA1-46BB-9853-053F093F344C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>AlgoGenCPPTest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
