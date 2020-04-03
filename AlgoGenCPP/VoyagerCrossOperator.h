@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <random>
 #include <set>
+#include <iterator>
 
 class VoyagerCrossOperator
 {
