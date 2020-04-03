@@ -21,8 +21,9 @@ public:
 		float random_element = dist(engine);
 		std::vector<T> final_population;
 		int count = 0;
+		int iteration = 0;
 
-		if (count <= m_number_selection)
+		while(count <= m_number_selection)
 		{
 			float s = 0;
 			for (int i = 0; i < notes.size(); i++)
@@ -30,11 +31,13 @@ public:
 				s += notes.at(i);
 				if (s > random_element)
 				{
-					final_population.push_back(population.at(i));
-					notes.erase(notes.at(i));
-					population.erase(population.at(i));
+					final_population.push_back(population.at(iteration));
+					notes.erase(notes.begin() + iteration);
+					population.erase(population.begin() + iteration);
 					++count;
 				}
+
+				++iteration;
 			}
 		}
 

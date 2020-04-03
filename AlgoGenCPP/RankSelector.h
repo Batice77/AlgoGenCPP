@@ -25,7 +25,7 @@ public:
 
 		while (!population.empty())
 		{
-			int index_max = std::max_element(notes.begin(), notes.end());
+			int index_max = std::distance(notes.begin(), std::max_element(notes.begin(), notes.end()));
 			ranked_population.push_back(population.at(index_max));
 			notes2.push_back(population.at(index_max));
 			notes.erase(notes.begin() + index_max);
@@ -33,8 +33,9 @@ public:
 		}
 
 		int count = 0;
+		int iteration = 0;
 
-		if (count <= m_number_selection)
+		while(count <= m_number_selection)
 		{
 			float s = 0;
 			for (int i = 0; i < notes.size(); i++)
@@ -42,11 +43,12 @@ public:
 				s += notes.at(i);
 				if (s > random_element)
 				{
-					final_population.push_back(population.at(i));
-					notes.erase(notes.at(i));
-					population.erase(population.at(i));
+					final_population.push_back(ranked_population.at(iteration));
+					notes.erase(notes.begin() + index_max);
+					population.erase(population.begin() + index_max);
 					++count;
 				}
+				++iteration;
 			}
 		}
 
