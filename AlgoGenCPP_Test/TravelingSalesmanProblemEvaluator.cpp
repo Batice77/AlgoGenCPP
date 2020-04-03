@@ -30,22 +30,24 @@ float TravelingSalesmanProblemEvaluator::evaluate(const std::vector<unsigned int
 {
     float value = 0;
 
-    std::array<int, 2> currentPosition = m_cities[solution[0]];
     std::set<std::array<int, 2>> visitedCities;
 
-    for (unsigned int i = 1; i < solution.size(); ++i) {
-        std::array<int, 2> nextPosition = m_cities[solution[i]];
+    for (unsigned int i = 0; i <= solution.size(); ++i) {
+        const std::array<int, 2> &currentPosition
+            = m_cities[solution[i%solution.size()]];
+        const std::array<int, 2> &nextPosition
+            = m_cities[solution[(i+1)%solution.size()]];
         float distance =
             std::sqrt(std::pow(nextPosition[0] - currentPosition[0], 2)
-                    + std::pow(nextPosition[0] - currentPosition[0], 2));
+                    + std::pow(nextPosition[1] - currentPosition[1], 2));
 
         if (visitedCities.count(nextPosition) != 0) {
             value -= m_alreadyVisitedMalus;
+        } else {
+            value += m_mapDiagonal - distance;
         }
 
-        value += m_mapDiagonal - distance;
-
-        currentPosition = nextPosition;
+        visitedCities.emplace(currentPosition);
     }
 
     return value;
