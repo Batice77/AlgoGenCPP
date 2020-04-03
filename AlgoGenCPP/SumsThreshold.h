@@ -5,19 +5,19 @@ template <typename T, typename I, typename Q, typename S>
 class SumsThreshold
 {
 public:
-	SumsThreshold(const I& it, const Q& qual, const S& stab);
+	SumsThreshold(I& it, const Q& qual, S& stab);
 	~SumsThreshold() {};
 
-	bool operator()(const std::vector<float> qualityList) {
+	bool operator()(const std::vector<float> qualityList) const {
 		return iterative(qualityList) || quality(qualityList) || stability(qualityList);
 	}
 
 protected:
-	const I& iterative;
+	I& iterative;
 	const Q& quality;
-	const S& stability;
+	S& stability;
 };
 
 template<typename T, typename I, typename Q, typename S >
-inline SumsThreshold<T, I, Q, S>::SumsThreshold(const I& it, const Q& qual, const S& stab):iterative(it), quality(qual), stability(stab) {};
+inline SumsThreshold<T, I, Q, S>::SumsThreshold(I& it, const Q& qual, S& stab):iterative(it), quality(qual), stability(stab) {}
 
