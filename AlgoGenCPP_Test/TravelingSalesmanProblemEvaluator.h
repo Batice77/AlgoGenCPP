@@ -7,7 +7,6 @@ class TravelingSalesmanProblemEvaluator
 {
     public:
         TravelingSalesmanProblemEvaluator(unsigned int citiesToGenerate,
-                float alreadyVisitedMalus = 141.421356237,
                 unsigned int mapWidth = 100, unsigned int mapHeight = 100);
         void init();
         float evaluate(const std::vector<unsigned int>& solution) const;
@@ -16,7 +15,6 @@ class TravelingSalesmanProblemEvaluator
 
     private:
         unsigned int m_citiesToGenerate;
-        float m_alreadyVisitedMalus;
         unsigned int m_mapWidth;
         unsigned int m_mapHeight;
         unsigned int m_mapDiagonal;
